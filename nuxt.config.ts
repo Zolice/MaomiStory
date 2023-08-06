@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', 'nuxt-vuefire',],
+  modules: ['@nuxtjs/tailwindcss', 'nuxt-vuefire', '@nuxt/image'],
   plugins: [{ src: '~/plugins/vercel.ts', mode: 'client' }],
   vuefire: {
     config: {
