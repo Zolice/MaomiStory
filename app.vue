@@ -4,26 +4,26 @@
         <!-- Left Header/Sidebar -->
         <div class="h-screen w-auto mx-0 flex-none bg-gray-900 flex flex-col">
             <!-- Navigation on Sidebar -->
-            <div class="flex flex-col my-auto">
-                <button class="h-auto w-full">
-                    <img src="~/public/sample/sample_logo_256x256.png" class="h-8 w-8 mx-8 my-4 rounded-full" />
+            <div class="flex flex-col my-auto gap-2">
+                <button class="btn btn-ghost h-auto w-full">
+                    <img src="~/public/sample/sample_logo_256x256.png" class="h-8 w-8 rounded-full" />
                 </button>
 
                 <button @mouseover="mousingOver = true" @mouseleave="mousingOver = false"
                     class="btn btn-ghost h-auto w-full transition ease-linear hover:scale-110">
 
-                    <img :src="mousingOver ? navigationButtonMouseover : navigationButton" class="h-8 w-8 mx-8 my-4" />
+                    <img :src="mousingOver ? navigationButtonMouseover : navigationButton" class="h-8 w-8" />
 
                 </button>
 
                 <button class="btn btn-ghost h-auto w-full transition ease-linear hover:scale-110">
-                    <img :src="navigationButton" class="h-8 w-8 mx-8 my-4" />
+                    <img :src="navigationButton" class="h-8 w-8" />
                 </button>
                 <button class="btn btn-ghost h-auto w-full transition ease-linear hover:scale-110">
-                    <img :src="navigationButton" class="h-8 w-8 mx-8 my-4" />
+                    <img :src="navigationButton" class="h-8 w-8" />
                 </button>
                 <button class="btn btn-ghost h-auto w-full transition ease-linear hover:scale-110">
-                    <img :src="navigationButton" class="h-8 w-8 mx-8 my-4" />
+                    <img :src="navigationButton" class="h-8 w-8" />
                 </button>
 
             </div>
