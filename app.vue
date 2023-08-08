@@ -5,33 +5,32 @@
         <div class="h-screen w-auto mx-0 flex-none bg-gray-900 flex flex-col">
             <!-- Navigation on Sidebar -->
             <div class="flex flex-col my-auto gap-2">
-                <button class="btn btn-ghost h-auto w-full">
+                <!-- Old Home Button -->
+                <!-- <button class="btn btn-ghost h-auto w-full">
                     <img src="~/public/sample/sample_logo_256x256.png" class="h-8 w-8 rounded-full" />
-                </button>
+                </button> -->
 
-                <button @mouseover="mousingOver = true" @mouseleave="mousingOver = false"
+                <!-- Old Navigation Button -->
+                <!-- <button @mouseover="mousingOver = true" @mouseleave="mousingOver = false"
                     class="btn btn-ghost h-auto w-full transition ease-linear hover:scale-110">
 
                     <img :src="mousingOver ? navigationButtonMouseover : navigationButton" class="h-8 w-8" />
 
-                </button>
+                </button> -->
 
-                <button class="btn btn-ghost h-auto w-full transition ease-linear hover:scale-110">
-                    <img :src="navigationButton" class="h-8 w-8" />
-                </button>
-                <button class="btn btn-ghost h-auto w-full transition ease-linear hover:scale-110">
-                    <img :src="navigationButton" class="h-8 w-8" />
-                </button>
-                <button class="btn btn-ghost h-auto w-full transition ease-linear hover:scale-110">
-                    <img :src="navigationButton" class="h-8 w-8" />
-                </button>
-
+                <NavigationButtonComponent name="Home" link="/"/>
+                <NavigationButtonComponent name="Sophia's Calculator" link="/calculator" />
+                <NavigationButtonComponent name="Navigation Type C" />
+                <NavigationButtonComponent name="Navigation Type D" />
             </div>
 
             <!-- Login/User/Profile Button -->
-            <button class="h-auto w-full">
+            <!-- Old Login/User/Profile -->
+            <!-- <button class="h-auto w-full">
                 <img src="~/public/sample/sample_profile_picture.png" class="h-8 w-8 m-8 rounded-full" />
-            </button>
+            </button> -->
+
+            <ProfileButtonComponent />
         </div>
 
         <!-- Right Content -->
@@ -47,10 +46,6 @@
 const router = useRouter();
 const route = useRoute();
 const user = useCurrentUser();
-const mousingOver = ref(false);
-
-const navigationButton = "/spa.png"
-const navigationButtonMouseover = "/sample/sample_logo_256x256.png"
 
 // we don't need this watcher on server
 onMounted(() => {
