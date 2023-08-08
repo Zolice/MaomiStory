@@ -1,8 +1,8 @@
 <template>
     <!-- Whole Screen -->
-    <div class="flex flex-nowrap h-screen">
+    <div class="flex flex-nowrap h-screen bg-[url('/img/arcana-background.png')] bg-center bg-cover">
         <!-- Left Header/Sidebar -->
-        <div class="h-screen w-auto mx-0 flex-none bg-gray-900 flex flex-col">
+        <div class="h-screen w-auto mx-0 flex-none flex flex-col backdrop-blur-md backdrop-brightness-[25%]">
             <!-- Navigation on Sidebar -->
             <div class="flex flex-col my-auto gap-2">
                 <!-- Old Home Button -->
@@ -34,7 +34,7 @@
         </div>
 
         <!-- Right Content -->
-        <div class="w-auto overflow-y-auto overflow-x-hidden">
+        <div class="w-full overflow-y-auto overflow-x-hidden backdrop-blur-md backdrop-brightness-50">
             <NuxtPage />
         </div>
     </div>
