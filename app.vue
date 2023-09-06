@@ -1,7 +1,8 @@
 
 <template>
-  <div>
+  <div class="flex flex-col min-h-screen">
     <NuxtPage />
+    <NavigationComponent/>
   </div>
 </template>
 
@@ -24,3 +25,20 @@ onMounted(() => {
   })
 })
 </script>
+
+<style>
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.6s;
+}
+.page-enter-from {
+  opacity: 0;
+  transform: translate(0, 100%);
+
+}
+.page-leave-to {
+  opacity: 0;
+  transform: translate(0, -100%);
+
+}
+</style>
