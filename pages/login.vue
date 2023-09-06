@@ -1,11 +1,11 @@
 <template>
     <div>
         <h1>Login</h1>
-        <button class="btn bg-primary" @click="login">ok</button>
+        <!-- <button class="btn bg-primary" @click="login">ok</button> -->
     </div>
 </template>
 
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import { getAuth, getRedirectResult, GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
 
 const provider = new GoogleAuthProvider();
@@ -58,4 +58,4 @@ const login = () => {
     console.log("login");
     signInWithRedirect(auth, provider);
 };
-</script>
+</script> -->
