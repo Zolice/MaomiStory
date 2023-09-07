@@ -32,8 +32,10 @@
             <ShopAccordionComponent/>
         </div>
 
+        <ShopCartBoxComponent/>
+
         <!-- extra space -->
-        <div class="h-[75px]">
+        <div class="h-[175px]">
         </div>
         
        
