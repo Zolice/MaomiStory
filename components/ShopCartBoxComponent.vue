@@ -15,7 +15,7 @@
         </div>
         <p class="m-2 font-outfit font-light text-white w-full line-clamp-2">Legendary Arcaneshade Weapon Box asdasdsalda asd asdadsa asd asd asda sdas adasad adadasdadddsadadsad</p>
         
-        <div class="divider">
+        <div class="divider m-0 mb-1">
         </div>
 
         <div class="grid grid-cols-3">
@@ -29,8 +29,8 @@
                     Coins Required.
                 </p>
             </div>
-            <div>
-                <input type="number" class="w-[35px] h-[50px] bg-black/25 text-white text-center" value="1" />
+            <div class="justify-center place-items-center flex flex-col">
+                <input type="number" class=" bg-transparent text-white text-center" value="1" />
                 <button class="btn btn-ghost btn-sm">Add to Cart</button>
             </div>
         </div>
