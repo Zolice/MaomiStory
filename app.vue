@@ -34,12 +34,12 @@ const route = useRoute()
 }
 .page-enter-from {
   opacity: 0;
-  transform: translate(0, 100%);
+  transform: translate(10%, 0);
 
 }
 .page-leave-to {
   opacity: 0;
-  transform: translate(0, -100%);
+  transform: translate(10%, 0);
 
 }
 </style>
