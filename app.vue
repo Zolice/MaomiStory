@@ -30,7 +30,7 @@ const route = useRoute()
 <style>
 .page-enter-active,
 .page-leave-active {
-  transition: all 0.6s;
+  transition: all 0.3s;
 }
 .page-enter-from {
   opacity: 0;

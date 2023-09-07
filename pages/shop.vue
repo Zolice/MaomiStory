@@ -44,12 +44,10 @@
             <ShopAccordionComponent/>
         </div>
 
-        <div class="toast">
+        <div class="toast z-[52] mb-20">
             <ShopCartBoxComponent/>
         </div>
 
-        <!-- extra space -->
-        <div class="h-[175px]">
-        </div>
+        
     </div>
 </template>
