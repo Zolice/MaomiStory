@@ -13,3 +13,13 @@
         
     </div>
 </template>
+
+<script setup lang="ts">
+    //set title to maomistory
+    useHead({
+       title: "MaomiStorySEA"
+    })
+
+
+
+</script>
