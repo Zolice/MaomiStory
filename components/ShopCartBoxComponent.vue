@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-black/25 backdrop-blur-sm h-[220px] w-[400px] border-primary border p-4">
+    <div class="bg-black/25 backdrop-blur-sm w-[400px] border-primary border p-4">
         <div class="flex">
             <NuxtImg src="/logo.png" class="w-[48px] h-[48px] object-contain mr-2" />
             <div>
@@ -13,12 +13,12 @@
         </div>
             </div>
         </div>
-        <p class="m-2 font-outfit font-light text-white w-full line-clamp-2">Legendary Arcaneshade Weapon Box asdasdsalda asd asdadsa asd asd asda sdas adasad adadasdadddsadadsad</p>
+        <p class="m-2 font-outfit font-light text-white w-full line-clamp-2">Legendary Arcaneshade Weapon Box</p>
         
         <div class="divider m-0 mb-1">
         </div>
 
-        <div class="grid grid-cols-3">
+        <div class="grid grid-cols-3 place-items-center">
             <div class=" col-span-2">
                 <p class="text-gray-500 text-sm">Item is 
                     <span class="text-error">Untradeable</span>
