@@ -46,8 +46,8 @@
            
         </div>
 
-        <div class="toast z-[52] mb-20">
-            <ShopCartBoxComponent/>
+        <div class="toast z-[52] mb-20" :class="showToast ? '' : 'hidden'">
+            <ShopCartBoxComponent />
         </div>
 
         
@@ -60,6 +60,8 @@
 import { collection, getDocs } from "firebase/firestore"; 
 
 const shopList = ref<any>({})
+const selectedData = ref<any>({})
+const showToast = ref(false)
 
 onMounted(async () => {
     //use nuxt app
@@ -81,6 +83,8 @@ onMounted(async () => {
 const shopBoxCallback = (data: any) => {
     console.log(data)
     console.log("got callback, show the popup for add to cart")
+    selectedData.value = data
+    showToast.value = true
 }
 
 </script>
