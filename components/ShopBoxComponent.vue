@@ -12,7 +12,7 @@
             <span class="material-symbols-outlined text-success text-[22px] place-self-center">package_2</span>
             <p class="font-outfit text-success font-light">{{ data.quantity }}</p>
         </div>
-        <template v-if="data.interacc">
+        <template v-if="data.interAccount">
             <p class="text-primary text-sm">Inter-Account</p>
         </template>
         <template v-else>
@@ -31,10 +31,13 @@
             type: Object,
             default: () => {
                 return {
+                    image: "/logo.png",
                     name: "Legendary Arcaneshade Weapon Box",
                     price: 9999,
                     quantity: 999,
-                    interacc: false
+                    interAccount: false,
+                    perWorld: false,
+                    shopId: 0
                 }
             }
         }
@@ -42,7 +45,7 @@
 
     //on click emit openBox
     const openBox = () => {
-        emits('openBox')
+        emits('openBox', props.data)
     }
 
 

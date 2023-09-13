@@ -39,9 +39,11 @@
 
         <!-- Shop Content -->
         <div class="p-8">
-            <ShopAccordionComponent/>
-            <ShopAccordionComponent/>
-            <ShopAccordionComponent/>
+            <template v-for="k,v in shopList" :key="v">
+                <ShopAccordionComponent :data="k" :name="v"/>
+
+            </template>
+           
         </div>
 
         <div class="toast z-[52] mb-20">
@@ -51,3 +53,29 @@
         
     </div>
 </template>
+
+<script setup lang="ts">
+
+//setup firebase
+import { collection, getDocs } from "firebase/firestore"; 
+
+const shopList = ref<any>({})
+
+onMounted(async () => {
+    //use nuxt app
+    const { $db } = useNuxtApp()
+
+    console.log("loaded")
+    const querySnapshot = await getDocs(collection($db, "shopdata"));
+    querySnapshot.forEach((doc) => {
+        let data = doc.data()
+        if (data.category in shopList.value) {
+            shopList.value[data.category].push(data)
+        } else {
+            shopList.value[data.category] = [data]
+        }
+    });
+    console.log(shopList.value)
+})
+
+</script>
