@@ -1,5 +1,5 @@
 <template>
-    <div class="h-screen">
+    <div class="h-auto">
         <NuxtImg src="/shopbg.png" class="h-screen w-screen object-cover fixed -z-10" />
         <!-- Title bar -->
         <div class="p-4 sticky top-0 z-10 backdrop-blur-sm">

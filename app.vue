@@ -1,6 +1,6 @@
 
 <template>
-  <div class="flex flex-col min-h-screen">
+  <div class="flex flex-col min-h-screen place-content-between">
     <NuxtPage />
     <NavigationComponent/>
     <TitleComponent/>
