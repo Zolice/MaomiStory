@@ -36,3 +36,21 @@
         </div>
     </div>
 </template>
+
+<script setup lang="ts">
+
+//setup firebase
+import { collection, getDocs } from "firebase/firestore"; 
+
+onMounted(async () => {
+    //use nuxt app
+    const { $db } = useNuxtApp()
+
+    console.log("l;oaded")
+    const querySnapshot = await getDocs(collection($db, "shopdata"));
+    querySnapshot.forEach((doc) => {
+      console.log(`${doc.id} => ${doc.data()}`);
+    });
+})
+
+</script>
