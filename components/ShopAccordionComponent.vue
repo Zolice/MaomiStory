@@ -6,16 +6,9 @@
         </div>
         <div class="collapse-content">
             <div class="p-8 flex flex-wrap gap-3 w-full max-h-[450px] overflow-auto">
-                <ShopBoxComponent />
-                <ShopBoxComponent />
-                <ShopBoxComponent />
-                <ShopBoxComponent />
-                <ShopBoxComponent />
-                <ShopBoxComponent />
-                <ShopBoxComponent />
-                <ShopBoxComponent />
-                <ShopBoxComponent />
-                <ShopBoxComponent />
+                <template v-for="shopBox, v in data" :key="v">
+                    <ShopBoxComponent :data="shopBox" @open-box="shopBoxCallback"/>
+                </template> 
             </div>
         </div>
     </div>
@@ -23,6 +16,8 @@
 
 <script setup lang="ts">
     //define props data
-    const props = defineProps(['data', 'name'])
+    const props = defineProps(['data', 'name', 'shopBoxCallback'])
     console.log(props.data)
+
+
 </script>

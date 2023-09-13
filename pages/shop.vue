@@ -40,7 +40,7 @@
         <!-- Shop Content -->
         <div class="p-8">
             <template v-for="k,v in shopList" :key="v">
-                <ShopAccordionComponent :data="k" :name="v"/>
+                <ShopAccordionComponent :data="k" :name="v" :shopBoxCallback="shopBoxCallback"/>
 
             </template>
            
@@ -77,5 +77,10 @@ onMounted(async () => {
     });
     console.log(shopList.value)
 })
+
+const shopBoxCallback = (data: any) => {
+    console.log(data)
+    console.log("got callback, show the popup for add to cart")
+}
 
 </script>
