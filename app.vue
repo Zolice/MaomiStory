@@ -1,6 +1,6 @@
 
 <template>
-  <div class="flex flex-col min-h-screen">
+  <div class="flex flex-col min-h-screen place-content-between">
     <NuxtPage />
     <NavigationComponent/>
     <TitleComponent/>
@@ -30,7 +30,7 @@ const route = useRoute()
 <style>
 .page-enter-active,
 .page-leave-active {
-  transition: all 0.6s;
+  transition: all 0.3s;
 }
 .page-enter-from {
   opacity: 0;
