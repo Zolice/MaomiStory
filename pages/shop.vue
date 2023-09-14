@@ -23,7 +23,7 @@
                     <div class="tooltip tooltip-bottom btn btn-ghost flex" data-tip="Filter">
                         <span class="material-symbols-outlined">filter_list</span>
                     </div>
-                    <div class="tooltip tooltip-bottom btn btn-ghost flex indicator" data-tip="View Cart">
+                    <div class="tooltip tooltip-bottom btn btn-ghost flex indicator" data-tip="View Cart" @click="openCart">
                         <span v-if="cartTotal > 0" class="indicator-item badge badge-primary badge-xs mt-1 mr-1">{{ cartTotal }}</span>
                         <span class="material-symbols-outlined">shopping_cart</span>
                     </div>
@@ -50,6 +50,7 @@
             <ShopCartBoxComponent :data="selectedData" @cart-update="quantityAdjust"/>
         </div>
 
+        <CartComponent />
         
     </div>
 </template>
@@ -83,6 +84,11 @@ onMounted(async () => {
     console.log(shopList.value)
     quantityAdjust()
 })
+
+const openCart = () => {
+    const cartModal = document.getElementById('cartModal') as HTMLDialogElement
+    cartModal?.showModal()
+}
 
 const quantityAdjust = () => {
     var cart = localStorage.getItem('cart')
