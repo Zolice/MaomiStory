@@ -47,7 +47,7 @@
         </div>
 
         <div class="toast z-[52] mb-20" :class="showToast ? '' : 'hidden'">
-            <ShopCartBoxComponent />
+            <ShopCartBoxComponent :data="selectedData" @cart-update="quantityAdjust"/>
         </div>
 
         
@@ -59,6 +59,7 @@
 //setup firebase
 import { collection, getDocs } from "firebase/firestore"; 
 
+const originalShopList = ref<any>({})
 const shopList = ref<any>({})
 const selectedData = ref<any>({})
 const showToast = ref(false)
@@ -77,8 +78,33 @@ onMounted(async () => {
             shopList.value[data.category] = [data]
         }
     });
+    originalShopList.value = shopList.value
     console.log(shopList.value)
+    quantityAdjust()
 })
+
+const quantityAdjust = () => {
+    var cart = localStorage.getItem('cart')
+    if (cart) {
+        let cart2 = JSON.parse(cart)
+        console.log(cart2)
+        //TODO: find a better way for this, currently 3 loops
+        const tempList = JSON.parse(JSON.stringify(originalShopList.value))
+        Object.keys(tempList).map((category: any) => {
+            tempList[category].forEach((item: any) => {
+                cart2.forEach((itemdata: any) => {
+                    if (itemdata.item.name == item.name) {
+                        item.quantity -= itemdata.quantity
+                    }
+                });
+                
+            });
+        });
+        shopList.value = tempList
+        console.log(shopList.value)
+    }
+    showToast.value = false
+}
 
 const shopBoxCallback = (data: any) => {
     console.log(data)
