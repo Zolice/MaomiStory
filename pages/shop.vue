@@ -115,9 +115,9 @@ const quantityAdjust = () => {
                 }
                 
                 itemlist: for (let j = 0; j < tempList[values[i]].length; j++) {
-                    console.log(tempList[values[j]])
-                    if ((itemdata.item.name == tempList[values[j]].name) && (itemdata.item.coinType == tempList[values[j]].coinType)) {
-                        tempList[values[j]].quantity -= itemdata.quantity
+                    console.log(tempList[values[i]][j])
+                    if ((itemdata.item.name == tempList[values[i]][j].name) && (itemdata.item.coinType == tempList[values[i]][j].coinType)) {
+                        tempList[values[i]][j].quantity -= itemdata.quantity
                         break category
                     }
                 }
