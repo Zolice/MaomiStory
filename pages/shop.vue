@@ -88,27 +88,46 @@ const quantityAdjust = () => {
     if (cart) {
         let cart2 = JSON.parse(cart)
         console.log(cart2)
+        let totalloops = 0
         //TODO: find a better way for this, currently 3 loops
         const tempList = JSON.parse(JSON.stringify(originalShopList.value))
-        Object.keys(tempList).map((category: any) => {
-            tempList[category].forEach((item: any) => {
-                cart2.forEach((itemdata: any) => {
-                    if (itemdata.item.name == item.name) {
-                        item.quantity -= itemdata.quantity
-                    }
-                });
+        // Object.keys(tempList).map((category: any) => {
+        //     tempList[category].forEach((item: any) => {
+        //         cart2.forEach((itemdata: any) => {
+        //             if ((itemdata.item.name == item.name) && (itemdata.item.coinType == item.coinType)) {
+        //                 item.quantity -= itemdata.quantity
+        //             }
+        //             totalloops++
+        //         });
                 
-            });
+        //     });
+        // });
+
+        cart2.forEach((itemdata: any) => {
+            let keys: any = Object.values(tempList)
+            category: for (let i = 0; i < keys.length; i++) {
+                console.log(keys[i])
+                itemdata: for (let j = 0; j < keys[i].length; j++) {
+                    console.log(keys[i][j])
+                    if ((itemdata.item.name == keys[i][j].name) && (itemdata.item.coinType == keys[i][j].coinType)) {
+                        keys[i][j].quantity -= itemdata.quantity
+                        break category;
+                    }
+                }
+            }
         });
+        
+        
+
         shopList.value = tempList
         console.log(shopList.value)
+        console.log(totalloops)
     }
     showToast.value = false
 }
 
 const shopBoxCallback = (data: any) => {
     console.log(data)
-    console.log("got callback, show the popup for add to cart")
     selectedData.value = data
     showToast.value = true
 }
