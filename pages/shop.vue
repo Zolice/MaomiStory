@@ -104,14 +104,21 @@ const quantityAdjust = () => {
         // });
 
         cart2.forEach((itemdata: any) => {
-            let keys: any = Object.values(tempList)
-            category: for (let i = 0; i < keys.length; i++) {
-                console.log(keys[i])
-                itemdata: for (let j = 0; j < keys[i].length; j++) {
-                    console.log(keys[i][j])
-                    if ((itemdata.item.name == keys[i][j].name) && (itemdata.item.coinType == keys[i][j].coinType)) {
-                        keys[i][j].quantity -= itemdata.quantity
-                        break category;
+            let values: any = Object.keys(tempList)
+            console.log(values)
+            console.log(itemdata)
+
+            category: for (let i = 0; i < values.length; i++) {
+                if (itemdata.item.category != values[i]) {
+                    console.log("skipping " + values[i])
+                    continue category
+                }
+                
+                itemlist: for (let j = 0; j < tempList[values[i]].length; j++) {
+                    console.log(tempList[values[j]])
+                    if ((itemdata.item.name == tempList[values[j]].name) && (itemdata.item.coinType == tempList[values[j]].coinType)) {
+                        tempList[values[j]].quantity -= itemdata.quantity
+                        break category
                     }
                 }
             }
