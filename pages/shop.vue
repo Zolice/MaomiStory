@@ -24,7 +24,7 @@
                         <span class="material-symbols-outlined">filter_list</span>
                     </div>
                     <div class="tooltip tooltip-bottom btn btn-ghost flex indicator" data-tip="View Cart">
-                        <span class="indicator-item badge badge-primary badge-xs mt-1 mr-1">100</span>
+                        <span v-if="cartTotal > 0" class="indicator-item badge badge-primary badge-xs mt-1 mr-1">{{ cartTotal }}</span>
                         <span class="material-symbols-outlined">shopping_cart</span>
                     </div>
                 </div>
@@ -62,6 +62,7 @@ import { collection, getDocs } from "firebase/firestore";
 const originalShopList = ref<any>({})
 const shopList = ref<any>({})
 const selectedData = ref<any>({})
+const cartTotal = ref(0)
 const showToast = ref(false)
 
 onMounted(async () => {
@@ -87,6 +88,8 @@ const quantityAdjust = () => {
     var cart = localStorage.getItem('cart')
     if (cart) {
         let cart2 = JSON.parse(cart)
+        cartTotal.value = cart2?.length ?? 0
+
         console.log(cart2)
         let totalloops = 0
         //TODO: find a better way for this, currently 3 loops
