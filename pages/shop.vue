@@ -50,7 +50,7 @@
             <ShopCartBoxComponent :data="selectedData" @cart-update="quantityAdjust"/>
         </div>
 
-        <CartComponent />
+        <CartComponent :cartData="cartData"/>
         
     </div>
 </template>
@@ -63,6 +63,7 @@ import { collection, getDocs } from "firebase/firestore";
 const originalShopList = ref<any>({})
 const shopList = ref<any>({})
 const selectedData = ref<any>({})
+const cartData = ref<any>([])
 const cartTotal = ref(0)
 const showToast = ref(false)
 
@@ -70,7 +71,7 @@ onMounted(async () => {
     //use nuxt app
     const { $db } = useNuxtApp()
 
-    console.log("loaded")
+    console.log("loadede")
     const querySnapshot = await getDocs(collection($db, "shopdata"));
     querySnapshot.forEach((doc) => {
         let data = doc.data()
@@ -89,6 +90,7 @@ const openCart = () => {
     const cartModal = document.getElementById('cartModal') as HTMLDialogElement
     cartModal?.showModal()
 }
+
 
 const quantityAdjust = () => {
     var cart = localStorage.getItem('cart')
@@ -138,6 +140,7 @@ const quantityAdjust = () => {
         shopList.value = tempList
         console.log(shopList.value)
         console.log(totalloops)
+        cartData.value = cart2
     }
     showToast.value = false
 }
