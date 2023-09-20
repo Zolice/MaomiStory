@@ -50,7 +50,7 @@
             <ShopCartBoxComponent :data="selectedData" @cart-update="quantityAdjust"/>
         </div>
 
-        <CartComponent :cartData="cartData"/>
+        <CartComponent :cartData="cartData" ref="CartComponentRef"/>
         
     </div>
 </template>
@@ -66,6 +66,8 @@ const selectedData = ref<any>({})
 const cartData = ref<any>([])
 const cartTotal = ref(0)
 const showToast = ref(false)
+
+const CartComponentRef = ref<any>(null)
 
 onMounted(async () => {
     //use nuxt app
@@ -87,6 +89,7 @@ onMounted(async () => {
 })
 
 const openCart = () => {
+    CartComponentRef.value.calculateFinalPrices()
     const cartModal = document.getElementById('cartModal') as HTMLDialogElement
     cartModal?.showModal()
 }

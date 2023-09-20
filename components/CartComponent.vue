@@ -1,6 +1,6 @@
 <template>
     <dialog id="cartModal" class="modal">
-        <div class="modal-box">
+        <div class="modal-box max-w-[80%]">
             <p class="font-inter font-bold text-lg">Your Cart</p>
             <p class="font-outfit font-light">You have {{ cartData.length }} items in your cart</p>
             <br>
@@ -18,39 +18,22 @@
                     </div>
                 </template>
             </p>
-            <div class="overflow-x-auto">
-                <table class="table">
+            <div class="overflow-y-auto">
+                <table class="table table-pin-rows table-xs">
                     <!-- head -->
                     <thead>
                         <tr>
-                            <th></th>
+                            <th>Icon</th>
                             <th>Name</th>
-                            <th>Job</th>
-                            <th>Favorite Color</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- row 1 -->
-                        <tr>
-                            <th>1</th>
-                            <td>Cy Ganderton</td>
-                            <td>Quality Control Specialist</td>
-                            <td>Blue</td>
-                        </tr>
-                        <!-- row 2 -->
-                        <tr class="hover">
-                            <th>2</th>
-                            <td>Hart Hagerty</td>
-                            <td>Desktop Support Technician</td>
-                            <td>Purple</td>
-                        </tr>
-                        <!-- row 3 -->
-                        <tr>
-                            <th>3</th>
-                            <td>Brice Swyre</td>
-                            <td>Tax Accountant</td>
-                            <td>Red</td>
-                        </tr>
+                        <template v-for="cartItem in cartData" :key="cartItem.item.id">
+                            <CartRowComponent :cartItem="cartItem"/>
+                        </template>
                     </tbody>
                 </table>
             </div>
@@ -62,8 +45,6 @@
 </template>
 
 <script setup lang="ts">
-import { on } from "events"
-
 
 const props = defineProps({
     cartData: {
@@ -76,9 +57,6 @@ onMounted(() => {
     calculateFinalPrices()
 })
 
-onUpdated(() => {
-    calculateFinalPrices()
-})
 
 const calculateFinalPrices = () => {
     //get coin data from cart
@@ -98,4 +76,8 @@ const calculateFinalPrices = () => {
     finalPrices.value = tempPrices
     
 }
+
+defineExpose({
+    calculateFinalPrices
+})
 </script>
