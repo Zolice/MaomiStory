@@ -32,7 +32,7 @@
                     </thead>
                     <tbody>
                         <template v-for="cartItem in cartData" :key="cartItem.item.id">
-                            <CartRowComponent :cartItem="cartItem"/>
+                            <CartRowComponent :cartItem="cartItem" @cart-update="cartDeleted"/>
                         </template>
                     </tbody>
                 </table>
@@ -52,6 +52,9 @@ const props = defineProps({
         required: true
     }
 })
+
+const emits = defineEmits(['cartUpdate'])
+
 const finalPrices = ref<any>({})
 onMounted(() => {
     calculateFinalPrices()
@@ -75,6 +78,11 @@ const calculateFinalPrices = () => {
     }
     finalPrices.value = tempPrices
     
+}
+
+const cartDeleted = () => {
+    calculateFinalPrices()
+    emits('cartUpdate')
 }
 
 defineExpose({

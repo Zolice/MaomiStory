@@ -50,7 +50,7 @@
             <ShopCartBoxComponent :data="selectedData" @cart-update="quantityAdjust"/>
         </div>
 
-        <CartComponent :cartData="cartData" ref="CartComponentRef"/>
+        <CartComponent :cartData="cartData" ref="CartComponentRef" @cart-update="quantityAdjust"/>
         
     </div>
 </template>

@@ -57,7 +57,7 @@ const addToCart = () => {
         let cart2 = JSON.parse(cart)
         //check if cart contains the same item by comparing to props.data.name
         let index = cart2.findIndex((item: any) => {
-            return item.item.name == props.data.name
+            return (item.item.name == props.data.name) && (item.item.coinType == props.data.coinType)
         })
         //if exists, update the quantity instead of pushing a new one
         if (index != -1) {
