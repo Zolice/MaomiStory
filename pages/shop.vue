@@ -6,16 +6,21 @@
             <div class="flex gap-2 p-4 place-items-center justify-between">
                 <div class="flex gap-2 p-4 place-items-center">
                     <span class="material-symbols-outlined text-[48px]">spa</span>
-                        <p class="text-[42px] font-inter uppercase font-bold tracking-wider leading-[48px] mr-4">Savior</p>
-                        <div class="tooltip tooltip-bottom btn btn-ghost flex" data-tip="Coin Shop">
+                    <div class="dropdown btn btn-ghost">
+                        <label tabindex="0" class="text-[42px] font-inter uppercase font-bold tracking-wider leading-[48px]">{{ currentSelectedShop.name }}</label>
+                        <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                            
+                            <li><a>Item 1</a></li>
+                            <li><a>Item 2</a></li>
+                        </ul>
+                    </div>
+                        
+                    <template v-for="shop in currentSelectedShop.shopTypes" :key="shop">
+                        <div class="tooltip tooltip-bottom btn btn-ghost flex" :data-tip="shop + ' Shop'" @click="()=> selectShop(shop)">
                             <NuxtImg src="logo.png" class=" h-[32px] w-[32px] object-contain" />
                         </div>
-                        <div class="tooltip tooltip-bottom btn btn-ghost flex" data-tip="Coin Shop">
-                            <NuxtImg src="logo.png" class=" h-[32px] w-[32px] object-contain" />
-                        </div>
-                        <div class="tooltip tooltip-bottom btn btn-ghost flex" data-tip="Coin Shop">
-                            <NuxtImg src="logo.png" class=" h-[32px] w-[32px] object-contain" />
-                        </div>
+                    </template>
+                    
                 </div>
                 
                 <!-- Filter and Shopping Cart -->
@@ -30,9 +35,9 @@
                 </div>
             </div>
             <p class="pl-4 font-outfit font-light text-gray-400">
-                SAVIOR: Wongstaurant runs from 11/11/1970 to 11/11/2032. 
+                {{ currentSelectedShop.name }} runs from {{ currentSelectedShop?.startDate?.toDate().toLocaleDateString() }} to {{ currentSelectedShop?.endDate?.toDate().toLocaleDateString() }}. Shop Closes on {{ currentSelectedShop?.shopEndDate?.toDate().toLocaleDateString() }}.
                 <span class="text-primary">
-                    Coin Shop Selected.
+                    {{ selectedShopType }} Shop Selected.
                 </span>
             </p>
         </div>
@@ -58,7 +63,7 @@
 <script setup lang="ts">
 
 //setup firebase
-import { collection, getDocs } from "firebase/firestore"; 
+import { collection, getDocs, Timestamp } from "firebase/firestore"; 
 
 const originalShopList = ref<any>({})
 const shopList = ref<any>({})
@@ -66,12 +71,16 @@ const selectedData = ref<any>({})
 const cartData = ref<any>([])
 const cartTotal = ref(0)
 const showToast = ref(false)
+const shopsData = ref<any>([])
+const currentSelectedShop = ref<any>({})
+const selectedShopType = ref<string>("")
 
+const { $db } = useNuxtApp()
 const CartComponentRef = ref<any>(null)
 
 onMounted(async () => {
     //use nuxt app
-    const { $db } = useNuxtApp()
+    loadShops()
 
     console.log("loadede")
     const querySnapshot = await getDocs(collection($db, "shopdata"));
@@ -92,6 +101,40 @@ const openCart = () => {
     CartComponentRef.value.calculateFinalPrices()
     const cartModal = document.getElementById('cartModal') as HTMLDialogElement
     cartModal?.showModal()
+}
+
+const selectShop = (shopType: string) => {
+    console.log(shopType)
+    selectedShopType.value = shopType
+    let tempList = quantityAdjust()
+    Object.keys(tempList).map((category: any) => {
+        tempList[category] = tempList[category].filter((item: any) => {
+            return item.shopType == shopType
+        })
+        //if empty categoy, clear
+        if (tempList[category].length == 0) {
+            delete tempList[category]
+        }
+    });
+    shopList.value = tempList
+    console.log(shopList.value)
+}
+
+const loadShops = async () => {
+    const querySnapshot = await getDocs(collection($db, "shops"));
+    querySnapshot.forEach((doc) => {
+        let data = doc.data()
+        shopsData.value.push(data)
+        if (data.current) {
+            currentSelectedShop.value = data
+        }
+        if (data.shopTypes && data.shopTypes.length > 0) {
+            selectedShopType.value = data.shopTypes[0]
+        }
+    });
+    console.log(shopsData.value)
+    console.log(currentSelectedShop.value)
+    
 }
 
 
@@ -144,8 +187,11 @@ const quantityAdjust = () => {
         console.log(shopList.value)
         console.log(totalloops)
         cartData.value = cart2
+
+        showToast.value = false
+        return tempList
     }
-    showToast.value = false
+    
 }
 
 const shopBoxCallback = (data: any) => {
