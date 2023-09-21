@@ -110,7 +110,7 @@ const filterShop = () => {
 const selectShop = (shopType: string) => {
     console.log(shopType)
     selectedShopType.value = shopType
-    let tempList = quantityAdjust()
+    let tempList = quantityAdjust() ?? JSON.parse(JSON.stringify(originalShopList.value))
     Object.keys(tempList).map((category: any) => {
         tempList[category] = tempList[category].filter((item: any) => {
             return item.shopType == shopType
