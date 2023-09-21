@@ -25,7 +25,7 @@
                 
                 <!-- Filter and Shopping Cart -->
                 <div class="flex">
-                    <div class="tooltip tooltip-bottom btn btn-ghost flex" data-tip="Filter">
+                    <div class="tooltip tooltip-bottom btn btn-ghost flex" data-tip="Filter" @click="filterShop">
                         <span class="material-symbols-outlined">filter_list</span>
                     </div>
                     <div class="tooltip tooltip-bottom btn btn-ghost flex indicator" data-tip="View Cart" @click="openCart">
@@ -101,6 +101,10 @@ const openCart = () => {
     CartComponentRef.value.calculateFinalPrices()
     const cartModal = document.getElementById('cartModal') as HTMLDialogElement
     cartModal?.showModal()
+}
+
+const filterShop = () => {
+    alert("coming soon!")
 }
 
 const selectShop = (shopType: string) => {
